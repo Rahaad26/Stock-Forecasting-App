@@ -1,68 +1,46 @@
 import React, { useState } from 'react';
-import "./login.css"
-import IMG from '../img/stock_app_logo-removebg-preview_2.png'
-function Login() {
-  const [username, setUsername] = useState('');
+import "./login.css";
+import logo from '../img/stock_app_logo-removebg-preview_2.png' ;
+function LoginForm() {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Simulate login process
-    if (username === 'admin' && password === 'password') {
-      alert('Login successful!');
-      // Redirect to the home page or other protected area
-    } else {
-      alert('Invalid username or password');
-    }
-  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle login logic here
+  }
 
   return (
-    <div className="login-container">
+    <>
       
-      <div className='Box2'>
-       <img src={IMG}/>
-      </div>
+    <div className='topBackgrung'>
 
-      <div className="Box">
-      <h2>Welcome to Stock Master</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="username-input">
-          <label htmlFor="username"  >Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div className="password-input">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className="forgot-password">
-          <a href="#">Forgot password?</a>
-        </div>
-        <button type="submit">LOGIN</button>
-      </form>
-      <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-        nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-        volutpat.
-      </p>
+    <div className='logobox'>
+        <img  src={logo} alt='logo'/>
+        <h1 className='logtext'>Login</h1>
       </div>
-
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        id="email"
+        value={email}
+        placeholder='Your Email'
+        onChange={(event) => setEmail(event.target.value)}
+      />
+      <br />
+      <input
+        type="password"
+        id="password"
+        value={password}
+        placeholder='Password'
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      <br />
+      <button type="submit">Login</button>
+    </form>
     </div>
+    
+    </>
   );
 }
-
-export default Login;
+export default LoginForm;

@@ -1,45 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import "./profile.css";
+import pic from "../img/rahad.jpg";
 function UserProfile() {
   const user = {
-    username: "John Doe",
-    accountType: "Individual",
-    profilePicture: "https://via.placeholder.com/150", // Placeholder image
-    portfolioValue: 100000.0,
-    cashBalance: 25000.0,
+    username: "Smk Rahad",
+    profilePicture: { pic },
   };
+  const [Name, setName] = useState("");
+  const [password, setPassword] = useState("");
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle login logic here
+  };
+  const [isOpen, trackIfopen] = useState(0);
   return (
-    <div className="user-profile">
-      <div className="Left">
-        <div className="user-info">
-          <img
-            src={user.profilePicture}
-            alt="Profile Picture"
-            className="profile-picture"
+    <>
+     <div className={`${isOpen===1 ? 'backdrop':''}`}>
+     </div>
+      <div className={`${isOpen===1 ? 'popUpBox':'closed'}`}>
+        <button className="closePopup" onClick={()=>trackIfopen(0)}>X</button>
+
+        <form onSubmit={handleSubmit} style={{padding:'1.5rem', borderRadius:'1rem'}} >
+          <input
+            type="text"
+            id="email"
+            value={Name}
+            placeholder="Enter Name"
+            onChange={(event) => setName(event.target.value)}
           />
-          <div className="user-details">
-            <h2>{user.username}</h2>
-            <p>Account Type: {user.accountType}</p>
+          <br />
+          <input
+            type="password"
+            id="password"
+            value={password}
+            placeholder="Password"
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <br />
+          <button type="submit">Change</button>
+        </form>
+      </div>
+      <div className="user-profile">
+        <div className="Top">
+          <div className="user-info">
+            <img src={pic} alt="Profile Picture" className="profile-picture" />
+            <div className="user-details">
+              <h2>{user.username}</h2>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="Reght">
-        <div className="portfolio-summary">
-          <h2>Portfolio Summary</h2>
-          <ul>
-            <li>Total Value: ${user.portfolioValue.toFixed(2)}</li>
-            <li>Cash Balance: ${user.cashBalance.toFixed(2)}</li>
-          </ul>
-        </div>
-        <div className="action-buttons">
-          <button>Cash In</button>
-          <button>Withdrawal</button>
+        <div>
+          <button className="cngbutton" onClick={() => trackIfopen(1)}>
+            Change profile info
+          </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
-
 export default UserProfile;

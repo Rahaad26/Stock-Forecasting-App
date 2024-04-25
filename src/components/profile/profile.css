@@ -1,30 +1,18 @@
 .user-profile {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   padding: 2rem;
-  height: 100vh;
-
-  border: 1px solid #ddd;
+  border: 5px solid #DCF2FB;
   border-radius: 4px;
-  background-color:  #f16666;
   justify-content: space-between;
   padding-left: 5rem;
   padding-right: 5rem;
+  margin-top: 2rem;
 }
-.Left{
+.Top{
   display: flex;
   flex-direction: column;
-  /* border: 2px solid black; */
-  height: 600px;
-  width: 600px;
-}
-.Reght{
-  display: flex;
-  flex-direction: column;
-  /* border: 2px solid black; */
-  height: 600px;
-  width: 600px;
 }
 .user-info {
   display: flex;
@@ -34,57 +22,76 @@
 }
 
 .profile-picture {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
+  width: 231px;
+  height: 231px;
+  border-radius: 10%;
+  object-fit:scale-down;
 }
 
-.user-details {
-  margin-left: 1rem;
-  font-size: 20px;
-  color: rgb(0, 0, 0);
-}
+
 
 .user-details h2 {
+  color:#7ECFEF ;
   margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 2rem;
 }
 
-.portfolio-summary {
-  margin-bottom: 2rem;
-}
 
-.portfolio-summary h2 {
-  margin-bottom: 1rem;
-}
 
-.portfolio-summary ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.portfolio-summary li {
-  margin-bottom: 0.5rem;
-}
-
-.action-buttons {
-  display: flex;
-  justify-content: center;
-}
-
-.action-buttons button {
+.cngbutton{
   padding: 0.75rem 1rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-right: 1rem;
-  background-color: #252525;
-  color: #fff;
+  background-color:  #DCF2FB;
+  color:black;
   transition: background-color 0.2s ease-in-out;
+  font-size: 1rem;
 }
 
-.action-buttons button:hover {
+.action-buttons button:hover,.action-buttons button:active{
   background-color: #444;
+}
+input[type="text"]{
+  margin-top: 5px;
+  width: 335px;
+  height: 52px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.popUpBox{
+   position:fixed;
+   top: 15rem;
+   left: 1.2rem;
+   width: 90vw;
+   height: 17rem;
+   z-index: 100;
+   border: 1px;
+}
+.closePopup{
+  position:absolute;
+  align-self:flex-start;
+  width: 3rem;
+  height: 2rem;
+  background-color:rgb(255, 255, 255);
+  border:0;
+  left: 17.5rem;
+  margin:1rem 2rem;
+}
+.closed{
+  display: none;
+}
+.backdrop{
+  position: fixed;
+  z-index: 10;
+  background-color: black;
+  height: 100vh;
+  width: 96.5vw;
+  opacity: 80%;
+
 }

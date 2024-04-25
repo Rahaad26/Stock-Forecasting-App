@@ -1,0 +1,36 @@
+.Container{
+    margin-top: 10rem;
+}
+.Graph{
+    width: 95.5vw;
+    height: 355px;
+    border: 1px solid black;
+}
+.StockData{
+    margin-top: 1rem;
+    padding: 0.2rem;
+}
+.Row{
+    display: flex;
+    justify-content: space-between;
+    height: 57.35px;
+    margin-bottom: 1rem;
+   
+
+}
+.Info{
+    width: 180.7px;
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.2px solid #6CB8D6;
+    padding:0.3rem;
+
+    
+
+}
+.icon{
+    width: 40%;
+    height: inherit;
+}
