@@ -3,14 +3,14 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  border: 5px solid #DCF2FB;
+  border: 5px solid #dcf2fb;
   border-radius: 4px;
   justify-content: space-between;
   padding-left: 5rem;
   padding-right: 5rem;
   margin-top: 2rem;
 }
-.Top{
+.Top {
   display: flex;
   flex-direction: column;
 }
@@ -25,35 +25,32 @@
   width: 231px;
   height: 231px;
   border-radius: 10%;
-  object-fit:scale-down;
+  object-fit: scale-down;
 }
 
-
-
 .user-details h2 {
-  color:#7ECFEF ;
+  color: #7ecfef;
   margin-bottom: 0.5rem;
   font-size: 2rem;
 }
 
-
-
-.cngbutton{
+.cngbutton {
   padding: 0.75rem 1rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-right: 1rem;
-  background-color:  #DCF2FB;
-  color:black;
+  background-color: #dcf2fb;
+  color: black;
   transition: background-color 0.2s ease-in-out;
   font-size: 1rem;
 }
 
-.action-buttons button:hover,.action-buttons button:active{
+.action-buttons button:hover,
+.action-buttons button:active {
   background-color: #444;
 }
-input[type="text"]{
+input[type="text"] {
   margin-top: 5px;
   width: 335px;
   height: 52px;
@@ -64,34 +61,48 @@ input[type="text"]{
   text-align: center;
 }
 
-.popUpBox{
-   position:fixed;
-   top: 15rem;
-   left: 1.2rem;
-   width: 90vw;
-   height: 17rem;
-   z-index: 100;
-   border: 1px;
+.popUpBox {
+  position: absolute;
+  width: 90vw;
+  right: 4.6rem;
+  height: 16rem;
+  z-index: 100;
+  border: 1px;
 }
-.closePopup{
-  position:absolute;
-  align-self:flex-start;
+.closePopup {
+  position: relative;
   width: 3rem;
   height: 2rem;
-  background-color:rgb(255, 255, 255);
-  border:0;
-  left: 17.5rem;
-  margin:1rem 2rem;
+  background-color: rgb(255, 255, 255);
+  border: 0;
+  left: 79vw;
+  top:42vh;
+  margin: 1rem 2rem;
 }
-.closed{
+.closed {
   display: none;
 }
-.backdrop{
+.backdrop {
   position: fixed;
   z-index: 10;
   background-color: black;
   height: 100vh;
-  width: 96.5vw;
+  width: 98vw;
   opacity: 80%;
-
+}
+.Logoutbutton{
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 1rem;
+  background-color: #f95252;
+  color: black;
+  transition: background-color 0.2s ease-in-out;
+  font-size: 1rem;
+}
+.ancor{
+  text-decoration: none;
+  color: black;
 }

@@ -6,6 +6,7 @@ import X from "../img/X.png";
 import Up from "../img/Up.png";
 import Down from "../img/Down.png";
 
+
 function StockInfo() {
   return (
     <>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Login from "./components/Login/login";
-import Profile from "./components/profile/profile";
-import Favourites from "./components/Fabourites/favourites";
-import Stockinfo from "./components/StockInfo/Stockinformation";
-import logo from "./logo.svg";
-import home from "./components/img/home.png";
-import favourite from "./components/img/favourite.png";
-import profile from "./components/img/profile.png";
+import Login from "./Login/login";
+import Profile from "./profile/profile";
+import Favourites from "./Fabourites/favourites";
+import Stockinfo from "./StockInfo/Stockinformation";
+import logo from "./img/stock_app_logo-removebg-preview_2.png";
+import home from "./img/home.png";
+import favourite from "./img/favourite.png";
+import profile from "./img/profile.png";
 import "./App.css";
 const Stocks = [
   {
