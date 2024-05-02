@@ -18,10 +18,8 @@ function StockInfo() {
         
         <StkInfo />
 
+        <Predict />
 
-
-
-  
       </div>
     </>
   );
@@ -79,6 +77,15 @@ function StockInfo() {
       </div>
     );
   }
+
+  function Predict(){
+    return (
+      <div className="ButtnContaner">
+        <button className="forecastButton">Predict Future Price</button>
+      </div>
+    );
+  }
+
 }
 
 export default StockInfo;

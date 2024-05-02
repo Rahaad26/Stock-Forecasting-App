@@ -1,5 +1,7 @@
 .Container{
     margin-top: 10rem;
+    height: 70vh;
+    overflow: scroll;
 }
 .Graph{
     width: 95.5vw;
@@ -33,4 +35,17 @@
 .icon{
     width: 40%;
     height: inherit;
+}
+.ButtnContaner{
+    margin-top: 1rem;
+    text-align: center;
+}
+.forecastButton{
+  margin: 0.5rem 1rem;
+  height: 55px;
+  width: 60vw;
+  background-color:  #DCF2FB;
+  border: 2px solid red;
+  border-radius: 10px;
+  font-weight: bold;
 }
