@@ -50,7 +50,7 @@
 .action-buttons button:active {
   background-color: #444;
 }
-input[type="text"] {
+.ProfileInfoInput {
   margin-top: 5px;
   width: 335px;
   height: 52px;

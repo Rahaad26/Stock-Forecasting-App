@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./profile.css";
 import pic from "../img/rahad.jpg";
-import Login from "../Login/login";
+
+ 
+
+
+
 function UserProfile() {
+
+
   const user = {
-    username: "Smk Rahad",
+    username:'SMK Rahad',
     profilePicture: { pic },
   };
   const [Name, setName] = useState("");
@@ -44,7 +50,7 @@ function UserProfile() {
 
         </div>
         <div>
-          <button className="Logoutbutton" onClick={() => setpg(1)}>
+          <button className="Logoutbutton" >
             <a className="ancor" href="../Login/login">Logout</a>
           </button>
           </div>
@@ -60,6 +66,7 @@ function UserProfile() {
        <button className="closePopup" onClick={()=>trackIfopen(0)}>X</button>
         <form onSubmit={handleSubmit} style={{padding:'1.5rem', borderRadius:'1rem'}} >
           <input
+          className="ProfileInfoInput"
             type="text"
             id="email"
             value={Name}
@@ -68,6 +75,7 @@ function UserProfile() {
           />
           <br />
           <input
+            className="ProfileInfoInput"
             type="password"
             id="password"
             value={password}

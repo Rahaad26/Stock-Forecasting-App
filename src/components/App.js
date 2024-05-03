@@ -7,6 +7,7 @@ import logo from "./img/stock_app_logo-removebg-preview_2.png";
 import home from "./img/home.png";
 import favourite from "./img/favourite.png";
 import profile from "./img/profile.png";
+
 import "./App.css";
 const Stocks = [
   {
@@ -68,13 +69,13 @@ const Stocks = [
 
 function App() {
   const [track, setTrack] = useState(1); // Initialize track state with a default value
-
+  const [srcitm, setSrcitm] = useState("");
+  const [scarcinfo, setScarcinfo] = useState(0);
   return (
     <div className="App">
       {track === 1 && <Scarch />}
-
-      {track === 1 && <StocksBox />}
-
+      {scarcinfo === 0 && track === 1 && <StocksBox />}
+      {scarcinfo === 1 && track === 1 && <SrcStocksBox />}
       {track === 2 && <Favourites />}
 
       {track === 3 && <Profile />}
@@ -106,12 +107,19 @@ function App() {
       </div>
     );
   }
+  function SrcStocksBox() {
+    return (
+      <div className="outerbox">
+        <div className="stocks"></div>
+      </div>
+    );
+  }
 
   function StockInfo(stockObj) {
     return (
       <div className="stockItm" onClick={() => setTrack(4)}>
         <div className="left">
-          <img className="stockImg" src={logo} alt="img" />
+          <img className="stockImg" src={logo} alt="IMG" />
           <p className="sname">{stockObj.name}Mushfique</p>
         </div>
         <div className="right">
@@ -122,7 +130,6 @@ function App() {
   }
 
   function Scarch() {
-    const [srcitm, setSrcitm] = useState("");
     return (
       <div className="topNav">
         <div className="profile">
