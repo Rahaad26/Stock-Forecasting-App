@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Login from "./Login/login";
+
 import Profile from "./profile/profile";
 import Favourites from "./Fabourites/favourites";
 import Stockinfo from "./StockInfo/Stockinformation";
@@ -8,7 +8,7 @@ import home from "./img/home.png";
 import favourite from "./img/favourite.png";
 import profile from "./img/profile.png";
 
-import "./App.css";
+import "./home.css";
 const Stocks = [
   {
     name: "Focaccia",

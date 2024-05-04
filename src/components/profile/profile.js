@@ -1,24 +1,50 @@
 import React, { useState,useEffect } from "react";
 import "./profile.css";
 import pic from "../img/rahad.jpg";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
- 
 
 
 
 function UserProfile() {
+  const [values,setValues]= useState({
+    id:"",
+    username:"",
+    email:""
+  })
+  axios.defaults.withCredentials = true;
+  useEffect(()=>{
+    axios.get('http://localhost:8081/')
+    .then(res =>{
+      setValues({id : res.data.usernameid,username: res.data.username,email : res.data.usernameemail});
+    })
+    .catch(err => console.log(err))
+
+   },[])
+
+
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `/`; 
+    navigate(path);
+  }
+
 
 
   const user = {
-    username:'SMK Rahad',
+    username:values.username,
     profilePicture: { pic },
   };
   const [Name, setName] = useState("");
   const [password, setPassword] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle login logic here
+   axios.post("http://localhost:8081/editinfo")
+    
   };
+
   const [isOpen, trackIfopen] = useState(0);
   const [pg,setpg] = useState(0);
 
@@ -50,8 +76,8 @@ function UserProfile() {
 
         </div>
         <div>
-          <button className="Logoutbutton" >
-            <a className="ancor" href="../Login/login">Logout</a>
+          <button className="Logoutbutton"   onClick={routeChange}>
+            Logout
           </button>
           </div>
       </div>
