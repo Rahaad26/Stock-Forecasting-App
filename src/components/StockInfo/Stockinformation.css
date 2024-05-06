@@ -5,9 +5,10 @@
 }
 .Graph{
     width: 95.5vw;
-    height: 355px;
+    height: 250px;
     border: 1px solid black;
 }
+
 .StockData{
     margin-top: 1rem;
     padding: 0.2rem;

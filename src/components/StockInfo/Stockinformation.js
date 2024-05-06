@@ -6,6 +6,9 @@ import X from "../img/X.png";
 import Up from "../img/Up.png";
 import Down from "../img/Down.png";
 import axios from "axios";
+import revenueData from "./data/revenueData.json";
+import { Chart as ChartJS, defaults } from "chart.js/auto";
+import { Bar, Doughnut, Line } from "react-chartjs-2";
 
 function StockInfo(stockobj) {
   const [values,setValues]= useState({
@@ -48,7 +51,22 @@ function StockInfo(stockobj) {
 
       <div className="Container">
         
-        <div className="Graph"></div>
+        <div className="Graph">
+        <Line className="LineChart"
+          data={{
+            labels: revenueData.map((data) => data.label),
+            datasets: [
+              {
+                label: "Stock Price",
+                data: revenueData.map((data) => data.revenue),
+                backgroundColor: "#064FF0",
+                borderColor: "#064FF0",
+              },
+            
+            ],
+          }}
+          />
+        </div>
         
         <StkInfo stockinfo={stockobj.stockobj} />
 
@@ -125,3 +143,4 @@ function StockInfo(stockobj) {
 }
 
 export default StockInfo;
+
