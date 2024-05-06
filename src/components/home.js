@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom/client";
 import Profile from "./profile/profile";
 import Favourites from "./Fabourites/favourites";
@@ -7,75 +7,36 @@ import logo from "./img/stock_app_logo-removebg-preview_2.png";
 import home from "./img/home.png";
 import favourite from "./img/favourite.png";
 import profile from "./img/profile.png";
-
+import axios from "axios";
 import "./home.css";
-const Stocks = [
-  {
-    name: "Focaccia",
-    price: 6,
-    photoName: "pizzas/focaccia.jpg",
-  },
-  {
-    name: "Focaccia",
-    price: 6,
-    photoName: "pizzas/focaccia.jpg",
-  },
-  {
-    name: "Focaccia",
-    price: 6,
-    photoName: "pizzas/focaccia.jpg",
-  },
-  {
-    name: "Focaccia",
-    price: 6,
-    photoName: "pizzas/focaccia.jpg",
-  },
-  {
-    name: "Focaccia",
-    price: 6,
-    photoName: "pizzas/focaccia.jpg",
-  },
-  {
-    name: "Pizza Margherita",
-    price: 10,
-    photoName: "pizzas/margherita.jpg",
-  },
-  {
-    name: "Pizza Spinaci",
-    price: 12,
-    photoName: "pizzas/spinaci.jpg",
-  },
-  {
-    name: "Pizza Spinaci",
-    price: 12,
-    photoName: "pizzas/spinaci.jpg",
-  },
-  {
-    name: "Pizza Funghi",
-    price: 12,
-    photoName: "pizzas/funghi.jpg",
-  },
-  {
-    name: "Pizza Salamino",
-    price: 15,
-    photoName: "pizzas/salamino.jpg",
-  },
-  {
-    name: "Pizza Prosciutto",
-    price: 18,
-    photoName: "pizzas/prosciutto.jpg",
-  },
-];
 
 function App() {
-  const stock=Stocks
-  const [track, setTrack] = useState(1); // Initialize track state with a default value
-  const [srcitm, setSrcitm] = useState("");
-  const [scarcinfo, setScarcinfo] = useState(0);
-  const[data,setData] = useState({
-     stockname: "",
-     stockprice:"",
-  })
+const [stocks, setStocks] = useState([]); 
+const [track, setTrack] = useState(1);
+const [srcitm, setSrcitm] = useState("");
+const [scarcinfo, setScarcinfo] = useState(0);
+axios.defaults.withCredentials = true;
+
+useEffect(() => {
+  axios.get('http://localhost:8081/stocks')
+    .then((res) => {
+        setStocks(res.data)
+    })
+    .catch(error => console.error("Error fetching stock data:", error));
+},[]);
+
+
+const[data,setData] = useState({
+  stockname: "",
+  stockid: "",
+  stockprice:"",
+  high:"",
+  low:"",
+  openprice:"",
+  volume:'',
+
+})
+
   return (
     <div className="App">
       {track === 1 && <Scarch />}
@@ -105,9 +66,10 @@ function App() {
     return (
       <div className="outerbox">
         <div className="stocks">
-          {Stocks.map((stock) => (
-            <StockInfo stockObjs={stock} key={stock.name} />
+          {stocks.map((stock,i) => (
+            <StockInfo stockObjs={stock} key={i}/>
           ))}
+     
         </div>
       </div>
     );
@@ -121,24 +83,29 @@ function App() {
   }
 
   function StockInfo(stockObjs) {
-      console.log(stockObjs.name)
+      
     return (
       <div className="stockItm" onClick={(event) =>{
         setData({
-          name:"Mushfique ur rahman",
-          price:10000,
+          name:stockObjs.stockObjs.name,
+          stockid:stockObjs.stockObjs.stock_id,
+          price:stockObjs.stockObjs.price,
+          high:stockObjs.stockObjs.high,
+          low:stockObjs.stockObjs.low,
+          openprice:stockObjs.stockObjs.opening_price,
+          volume:stockObjs.stockObjs.volume,
         }
         );
         setTrack(4)
-        
         }}>
+
         <div className="left">
           <img className="stockImg" src={logo} alt="IMG" />
           
-          <p className="sname">{stockObjs.name}Mushfik</p>
+          <p className="sname">{stockObjs.stockObjs.name}</p>
         </div>
         <div className="right">
-          <p>${stockObjs.price}</p>
+          <p>${stockObjs.stockObjs.price}</p>
         </div>
       </div>
     );

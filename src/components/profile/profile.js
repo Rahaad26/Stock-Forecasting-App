@@ -17,7 +17,7 @@ function UserProfile() {
   useEffect(()=>{
     axios.get('http://localhost:8081/')
     .then(res =>{
-      setValues({id : res.data.usernameid,username: res.data.username,email : res.data.usernameemail});
+      setValues({id : res.data.userid,username: res.data.username,email : res.data.usernameemail});
     })
     .catch(err => console.log(err))
 

@@ -1,23 +1,56 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Heart from "react-animated-heart";
 import "./Stockinformation.css";
 import D from "../img/D.png";
 import X from "../img/X.png";
 import Up from "../img/Up.png";
 import Down from "../img/Down.png";
-
+import axios from "axios";
 
 function StockInfo(stockobj) {
-    console.log(stockobj)
+  const [values,setValues]= useState({
+    id:"",
+    username:"",
+    email:""
+  })
+  axios.defaults.withCredentials = true;
+  useEffect(()=>{
+    
+    axios.get('http://localhost:8081/')
+    .then(res =>{
+      console.log(res.data)
+      setValues({id : res.data.userid,username: res.data.username,email : res.data.usernameemail});
+    })
+    .catch(err => console.log(err))
+
+   },[])
+
+ const hendelFav = async (event)=>{
+
+  event.stopPropagation();
+  const value={
+    stockname:stockobj.stockobj.name,
+    userid:parseInt(values.id)
+  };
+  axios
+  .post("http://localhost:8081/addfab",value)
+  .then((res) => {
+    if (res.data.Added) {
+    } 
+    console.log(res);
+  })
+  .catch((err) => console.log(err));
+};
+
   return (
     <>
-      <Nav stockname={stockobj.stockname} />
+      <Nav stockname={stockobj.stockobj.name} />
 
       <div className="Container">
         
         <div className="Graph"></div>
         
-        <StkInfo />
+        <StkInfo stockinfo={stockobj.stockobj} />
 
         <Predict />
 
@@ -33,14 +66,15 @@ function StockInfo(stockobj) {
           <h2>{stockname.stockname}</h2>
           <p>
             <div className="App">
-              <Heart isClick={isClick} onClick={() => setClick(!isClick)} />
+              <Heart isClick={isClick}  onClick={(event) => { hendelFav(event); setClick(!isClick) }}/>
             </div>
           </p>
         </div>
       </div>
     );
   }
-  function StkInfo(){
+  function StkInfo(stockinfo){
+    
     return(
         <div className="StockData">
         <div className="Row">
@@ -48,14 +82,14 @@ function StockInfo(stockobj) {
             <img className="icon" src={D} alt="Logo" />
             <div>
               <div>Open Price</div>
-              <div>$9.453.76</div>
+              <div>${stockinfo.stockinfo.openprice}</div>
             </div>
           </div>
           <div className="Info">
             <img className="icon" src={X} alt="Logo" />
             <div>
               <div>Volume</div>
-              <div>$2.782.002</div>
+              <div>${stockinfo.stockinfo.volume}</div>
             </div>
           </div>
         </div>
@@ -63,15 +97,15 @@ function StockInfo(stockobj) {
           <div className="Info">
             <img className="icon" src={Up} alt="Logo" />
             <div>
-              <div>24h High</div>
-              <div>782.00</div>
+              <div>52h Week High</div>
+              <div>${stockinfo.stockinfo.high}</div>
             </div>
           </div>
           <div className="Info">
             <img className="icon" src={Down} alt="Logo" />
             <div>
-              <div>24h Low</div>
-              <div>982.82</div>
+              <div>52h Week Low</div>
+              <div>${stockinfo.stockinfo.low}</div>
             </div>
           </div>
         </div>
@@ -86,6 +120,7 @@ function StockInfo(stockobj) {
       </div>
     );
   }
+
 
 }
 

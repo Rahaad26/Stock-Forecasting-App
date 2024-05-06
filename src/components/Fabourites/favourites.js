@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "../img/test.png";
 import "./favourites.css";
+import axios from "axios";
 const Stocks = [
     {
       name: "Focaccia",
@@ -16,6 +17,24 @@ const Stocks = [
 
 
 function Favourites() {
+  const getFavorites = async (userid) => {
+    try {
+      const response = await axios.get(`http://localhost:8081/getfavorites/${userid}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error in retrieving favorites:", error);
+      return [];
+    }
+  };
+
+  // Example usage:
+  const userid = 1; // replace with actual user ID
+  getFavorites(userid).then((favorites) => {
+    console.log("Favorites:", favorites.stock_name);
+  });
+
+
+
     return(
 <div className="topNav">
   
