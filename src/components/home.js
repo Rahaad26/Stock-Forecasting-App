@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import ReactDom from "react-dom/client";
 import Profile from "./profile/profile";
 import Favourites from "./Fabourites/favourites";
 import Stockinfo from "./StockInfo/Stockinformation";
@@ -68,9 +68,14 @@ const Stocks = [
 ];
 
 function App() {
+  const stock=Stocks
   const [track, setTrack] = useState(1); // Initialize track state with a default value
   const [srcitm, setSrcitm] = useState("");
   const [scarcinfo, setScarcinfo] = useState(0);
+  const[data,setData] = useState({
+     stockname: "",
+     stockprice:"",
+  })
   return (
     <div className="App">
       {track === 1 && <Scarch />}
@@ -80,7 +85,7 @@ function App() {
 
       {track === 3 && <Profile />}
 
-      {track === 4 && <Stockinfo />}
+      {track === 4 && <Stockinfo  stockobj={data} />}
 
       <div className="bottomNav">
         <button className="btn" onClick={() => setTrack(1)}>
@@ -100,8 +105,8 @@ function App() {
     return (
       <div className="outerbox">
         <div className="stocks">
-          {Stocks.map((stk) => (
-            <StockInfo stockObj={stk} key={stk.name} />
+          {Stocks.map((stock) => (
+            <StockInfo stockObjs={stock} key={stock.name} />
           ))}
         </div>
       </div>
@@ -115,15 +120,25 @@ function App() {
     );
   }
 
-  function StockInfo(stockObj) {
+  function StockInfo(stockObjs) {
+      console.log(stockObjs.name)
     return (
-      <div className="stockItm" onClick={() => setTrack(4)}>
+      <div className="stockItm" onClick={(event) =>{
+        setData({
+          name:"Mushfique ur rahman",
+          price:10000,
+        }
+        );
+        setTrack(4)
+        
+        }}>
         <div className="left">
           <img className="stockImg" src={logo} alt="IMG" />
-          <p className="sname">{stockObj.name}Mushfique</p>
+          
+          <p className="sname">{stockObjs.name}Mushfik</p>
         </div>
         <div className="right">
-          <p>${stockObj.price}</p>
+          <p>${stockObjs.price}</p>
         </div>
       </div>
     );

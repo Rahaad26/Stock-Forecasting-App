@@ -7,10 +7,11 @@ import Up from "../img/Up.png";
 import Down from "../img/Down.png";
 
 
-function StockInfo() {
+function StockInfo(stockobj) {
+    console.log(stockobj)
   return (
     <>
-      <Nav />
+      <Nav stockname={stockobj.stockname} />
 
       <div className="Container">
         
@@ -24,12 +25,12 @@ function StockInfo() {
     </>
   );
 
-  function Nav() {
+  function Nav(stockname) {
     const [isClick, setClick] = useState(false);
     return (
       <div className="topNav">
         <div className="profile">
-          <h2>Stock Name</h2>
+          <h2>{stockname.stockname}</h2>
           <p>
             <div className="App">
               <Heart isClick={isClick} onClick={() => setClick(!isClick)} />
